@@ -2,10 +2,12 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Entreprise;
 use App\Entity\EscapeGame;
 use App\Entity\Evenements;
 use App\Entity\Seminaire;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Menu\DashboardMenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,5 +48,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Evenements', 'fa-solid fa-award', Evenements::class);
         yield MenuItem::linkToCrud('Escape Game', 'fa-solid fa-door-open', EscapeGame::class);
         yield MenuItem::linkToCrud('Seminaire', 'fa-solid fa-users', Seminaire::class);
+        yield MenuItem::linkToCrud('Entreprise', 'fa-solid fa-users', Entreprise::class);
     }
 }

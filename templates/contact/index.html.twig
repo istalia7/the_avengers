@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %} {% block title %}{% endblock %} {% block body %}
+<div>
+  {{ form_start(contactForm) }}
+  {# Nom Field #}
+  <div>
+    {{ form_label(contactForm.nom) }}
+    {{ form_widget(contactForm.nom) }}
+  </div>
+  {# Prenom field #}
+  <div>
+    {{ form_label(contactForm.prenom) }}
+    {{ form_widget(contactForm.prenom) }}
+  </div>
+  {# Email field #}
+  <div>
+    {{ form_label(contactForm.email) }}
+    {{ form_widget(contactForm.email) }}
+  </div>
+  {# Telephone field #}
+  <div>
+    {{ form_label(contactForm.numTel) }}
+    {{ form_widget(contactForm.numTel) }}
+  </div>
+  {# Motif field #}
+  <div>
+    {{ form_label(contactForm.motif) }}
+    {{ form_widget(contactForm.motif) }}
+  </div>
+  {# Message field #}
+  <div>
+    <p>{{ form_label(contactForm.message) }}</p>
+    {{ form_widget(contactForm.message) }}
+  </div>
+  <button type="submit">Envoyer ?</button>
+  {{ form_end(contactForm) }}
+</div>
+{% endblock %}

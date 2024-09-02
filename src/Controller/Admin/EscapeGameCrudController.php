@@ -35,7 +35,7 @@ class EscapeGameCrudController extends AbstractCrudController
                 ->setBasePath('build/images/escape_game')
                 ->setUploadDir('public/build/images/escape_game')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
-                ->setRequired(true)
+                ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M'))
         ];
     }

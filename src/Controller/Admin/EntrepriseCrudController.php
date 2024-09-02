@@ -2,20 +2,22 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Evenements;
+use App\Entity\Entreprise;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Validator\Constraints\Image;
 
-class EvenementsCrudController extends AbstractCrudController
+class EntrepriseCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Evenements::class;
+        return Entreprise::class;
     }
 
 
@@ -24,14 +26,14 @@ class EvenementsCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
-            TextEditorField::new('description'),
-            DateTimeField::new('date', 'Date et Heure'),
+            IntegerField::new('nbrPers'),
             ImageField::new('imageName', 'Image')
-                ->setBasePath('build/images/evenements')
-                ->setUploadDir('public/build/images/evenements')
+                ->setBasePath('build/images/seminaires')
+                ->setUploadDir('public/build/images/seminaires')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M')),
+            AssociationField::new('seminaires'),
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\SeminaireRepository;
+use App\Repository\EntrepriseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -10,9 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
-#[ORM\Entity(repositoryClass: SeminaireRepository::class)]
-#[Vich\Uploadable]
-class Seminaire
+#[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
+class Entreprise
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,12 +19,18 @@ class Seminaire
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    #[ORM\Column]
+    private ?int $nbrPers = null;
 
-    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageName', size: 'imageSize')]
+    /**
+     * @var Collection<int, Seminaire>
+     */
+    #[ORM\ManyToMany(targetEntity: Seminaire::class, inversedBy: 'entreprises')]
+    private Collection $seminaires;
+
+    #[Vich\UploadableField(mapping: 'entreprise', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
@@ -37,15 +42,9 @@ class Seminaire
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    /**
-     * @var Collection<int, Entreprise>
-     */
-    #[ORM\ManyToMany(targetEntity: Entreprise::class, mappedBy: 'seminaires')]
-    private Collection $entreprises;
-
     public function __construct()
     {
-        $this->entreprises = new ArrayCollection();
+        $this->seminaires = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,26 +52,55 @@ class Seminaire
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getNom(): ?string
     {
-        return $this->titre;
+        return $this->nom;
     }
 
-    public function setTitre(string $titre): static
+    public function setNom(string $nom): static
     {
-        $this->titre = $titre;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getNbrPers(): ?int
     {
-        return $this->description;
+        return $this->nbrPers;
     }
 
-    public function setDescription(string $description): static
+    public function setNbrPers(int $nbrPers): static
     {
-        $this->description = $description;
+        $this->nbrPers = $nbrPers;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getNom();
+    }
+
+    /**
+     * @return Collection<int, Seminaire>
+     */
+    public function getSeminaires(): Collection
+    {
+        return $this->seminaires;
+    }
+
+    public function addSeminaire(Seminaire $seminaire): static
+    {
+        if (!$this->seminaires->contains($seminaire)) {
+            $this->seminaires->add($seminaire);
+        }
+
+        return $this;
+    }
+
+    public function removeSeminaire(Seminaire $seminaire): static
+    {
+        $this->seminaires->removeElement($seminaire);
 
         return $this;
     }
@@ -120,37 +148,5 @@ class Seminaire
     public function getImageSize(): ?int
     {
         return $this->imageSize;
-    }
-
-    public function __toString(): string
-    {
-        return $this->getTitre();
-    }
-
-    /**
-     * @return Collection<int, Entreprise>
-     */
-    public function getEntreprises(): Collection
-    {
-        return $this->entreprises;
-    }
-
-    public function addEntreprise(Entreprise $entreprise): static
-    {
-        if (!$this->entreprises->contains($entreprise)) {
-            $this->entreprises->add($entreprise);
-            $entreprise->addSeminaire($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntreprise(Entreprise $entreprise): static
-    {
-        if ($this->entreprises->removeElement($entreprise)) {
-            $entreprise->removeSeminaire($this);
-        }
-
-        return $this;
     }
 }
