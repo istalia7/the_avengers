@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Contact;
+use App\Entity\ContactEntreprise;
 use App\Entity\Entreprise;
 use App\Entity\EscapeGame;
 use App\Entity\Evenements;
@@ -49,5 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Escape Game', 'fa-solid fa-door-open', EscapeGame::class);
         yield MenuItem::linkToCrud('Seminaire', 'fa-solid fa-users', Seminaire::class);
         yield MenuItem::linkToCrud('Entreprise', 'fa-solid fa-users', Entreprise::class);
+        yield MenuItem::linkToCrud('Contact', 'fa-solid fa-envelope', Contact::class);
+        yield MenuItem::linkToCrud('Contact Entreprise', 'fa-solid fa-envelope-open-text', ContactEntreprise::class);
     }
 }

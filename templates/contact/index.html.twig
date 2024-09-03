@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %} {% block title %}{% endblock %} {% block body %}
+{% for message in app.flashes('success') %}
+<div>
+  {{ message }}
+</div>
+{% endfor %}
 <div>
   {{ form_start(contactForm) }}
   {# Nom Field #}
@@ -21,10 +26,10 @@
     {{ form_label(contactForm.numTel) }}
     {{ form_widget(contactForm.numTel) }}
   </div>
-  {# Motif field #}
+  {# Raison field #}
   <div>
-    {{ form_label(contactForm.motif) }}
-    {{ form_widget(contactForm.motif) }}
+    {{ form_label(contactForm.raison) }}
+    {{ form_widget(contactForm.raison) }}
   </div>
   {# Message field #}
   <div>

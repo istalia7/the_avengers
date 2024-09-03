@@ -22,20 +22,35 @@ class Seminaire
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    #[ORM\Column(length: 800)]
+    private ?string $descriptionStructure = null;
 
-    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageName', size: 'imageSize')]
-    private ?File $imageFile = null;
+    #[ORM\Column(length: 800)]
+    private ?string $descriptionEquipement = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?string $imageName = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $imageSize = null;
+    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageStructure', size: 'imageStructureSize')]
+    private ?File $imageStructureFile = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?string $imageStructure = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageStructureSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $structureUpdatedAt = null;
+
+    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageEquipement', size: 'imageSizeNum2')]
+    private ?File $imageEquipementFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageEquipement = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $imageEquipementSize = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $equipementUpdatedAt = null;
 
     /**
      * @var Collection<int, Entreprise>
@@ -65,14 +80,14 @@ class Seminaire
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescriptionStructure(): ?string
     {
-        return $this->description;
+        return $this->descriptionStructure;
     }
 
-    public function setDescription(string $description): static
+    public function setDescriptionStructure(string $descriptionStructure): static
     {
-        $this->description = $description;
+        $this->descriptionStructure = $descriptionStructure;
 
         return $this;
     }
@@ -84,42 +99,42 @@ class Seminaire
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageStructureFile
      */
-    public function setImageFile(?File $imageFile = null): void
+    public function setImageStructureFile(?File $imageStructureFile = null): void
     {
-        $this->imageFile = $imageFile;
+        $this->imageStructureFile = $imageStructureFile;
 
-        if (null !== $imageFile) {
+        if (null !== $imageStructureFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+            $this->structureUpdatedAt = new \DateTimeImmutable();
         }
     }
 
-    public function getImageFile(): ?File
+    public function getImageStructureFile(): ?File
     {
-        return $this->imageFile;
+        return $this->imageStructureFile;
     }
 
-    public function setImageName(?string $imageName): void
+    public function setImageStructure(?string $imageStructure): void
     {
-        $this->imageName = $imageName;
+        $this->imageStructure = $imageStructure;
     }
 
-    public function getImageName(): ?string
+    public function getImageStructure(): ?string
     {
-        return $this->imageName;
+        return $this->imageStructure;
     }
 
-    public function setImageSize(?int $imageSize): void
+    public function setImageStructureSize(?int $imageStructureSize): void
     {
-        $this->imageSize = $imageSize;
+        $this->imageStructureSize = $imageStructureSize;
     }
 
-    public function getImageSize(): ?int
+    public function getImageStructureSize(): ?int
     {
-        return $this->imageSize;
+        return $this->imageStructureSize;
     }
 
     public function __toString(): string
@@ -152,5 +167,62 @@ class Seminaire
         }
 
         return $this;
+    }
+
+    public function getDescriptionEquipement(): ?string
+    {
+        return $this->descriptionEquipement;
+    }
+
+    public function setDescriptionEquipement(?string $descriptionEquipement): self
+    {
+        $this->descriptionEquipement = $descriptionEquipement;
+
+        return $this;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageEquipementFile
+     */
+    public function setImageEquipementFile(?File $imageEquipementFile = null): void
+    {
+        $this->imageEquipementFile = $imageEquipementFile;
+
+        if (null !== $imageEquipementFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->equipementUpdatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageEquipementFile(): ?File
+    {
+        return $this->imageEquipementFile;
+    }
+
+    public function setImageEquipement(?string $imageEquipement): void
+    {
+        $this->imageEquipement = $imageEquipement;
+    }
+
+    public function getImageEquipement(): ?string
+    {
+        return $this->imageEquipement;
+    }
+
+    public function setImageEquipementSize(?int $imageEquipementSize): void
+    {
+        $this->imageEquipementSize = $imageEquipementSize;
+    }
+
+    public function getImageEquipementSize(): ?int
+    {
+        return $this->imageEquipementSize;
     }
 }

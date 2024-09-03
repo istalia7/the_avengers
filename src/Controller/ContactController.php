@@ -21,17 +21,15 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // La date est mis à jour lors de l'envoi du formulaire
             $contact->setDateEnvoi(new \DateTime());
-
             $entityManager->persist($contact);
             $entityManager->flush();
-
-            $this->addFlash('Bravo', 'Votre message a bien été envoyé !');;
-
+            $this->addFlash('success', 'Votre message a bien été envoyé !');
             return $this->redirectToRoute('app_contact');
         }
         return $this->render('contact/index.html.twig', [
-            'contactForm' => $form,
+            'contactForm' => $form->createView(),
         ]);
     }
 

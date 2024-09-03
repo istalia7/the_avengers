@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Form\Type\TextEditorType;
 use Symfony\Component\Validator\Constraints\Image;
 
 class SeminaireCrudController extends AbstractCrudController
@@ -25,8 +26,15 @@ class SeminaireCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('titre'),
-            TextEditorField::new('description'),
-            ImageField::new('imageName', 'Image')
+            TextEditorField::new('descriptionStructure'),
+            ImageField::new('imageStructure', 'Image Structure')
+                ->setBasePath('build/images/seminaires')
+                ->setUploadDir('public/build/images/seminaires')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setRequired(false)
+                ->setFileConstraints(new Image(maxSize: '1M')),
+            TextEditorField::new('descriptionEquipement'),
+            ImageField::new('imageEquipement', 'Image Equipement')
                 ->setBasePath('build/images/seminaires')
                 ->setUploadDir('public/build/images/seminaires')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')

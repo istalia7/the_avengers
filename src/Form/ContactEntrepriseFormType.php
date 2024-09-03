@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
+use App\Entity\ContactEntreprise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactFormType extends AbstractType
+class ContactEntrepriseFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -20,6 +20,8 @@ class ContactFormType extends AbstractType
             ->add('nom', TextType::class)
             ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
+            ->add('numTel', TelType::class)
+            ->add('nomEntreprise', TextType::class)
             ->add('raison', ChoiceType::class, [
                 'label' => 'Raison :',
                 'placeholder' => 'Sélectionnez un motif',
@@ -27,19 +29,18 @@ class ContactFormType extends AbstractType
                 'choices' => [
                     'Raison' => [
                         'Renseignement' => 'renseignement',
-                        'Réclamation' => 'réclamation',
+                        'Réservation' => 'réservation',
                         'Aide' => 'aide',
                     ]
                 ]
             ])
-            ->add('numTel', TelType::class)
             ->add('message', TextareaType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Contact::class,
+            'data_class' => ContactEntreprise::class,
         ]);
     }
 }
