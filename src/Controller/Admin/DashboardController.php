@@ -7,6 +7,7 @@ use App\Entity\ContactEntreprise;
 use App\Entity\Entreprise;
 use App\Entity\EscapeGame;
 use App\Entity\Evenements;
+use App\Entity\InfosContact;
 use App\Entity\Seminaire;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Menu\DashboardMenuItem;
@@ -53,5 +54,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Entreprise', 'fa-solid fa-users', Entreprise::class);
         yield MenuItem::linkToCrud('Contact', 'fa-solid fa-envelope', Contact::class);
         yield MenuItem::linkToCrud('Contact Entreprise', 'fa-solid fa-envelope-open-text', ContactEntreprise::class);
+        yield MenuItem::linkToCrud('Informations de contact', 'fa-solid fa-address-book', InfosContact::class);
     }
 }
