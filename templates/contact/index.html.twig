@@ -73,5 +73,11 @@
   </div>
   {{ form_end(contactForm) }}
 </div>
+{% for infosContact in infosContacts %}
+<ul>
+  <li class="list-group">{{ infosContact.adresse }}</li>
+  <li class="list-group">{{ infosContact.telephone }}</li>
+  <li class="list-group">{{ infosContact.adresseMail }}</li>
+</ul>
 
-{% endblock %}
+{% endfor %} {% endblock %}

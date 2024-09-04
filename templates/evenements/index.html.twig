@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %} {% block body %} {% for evenement in evenements
+%}
+<div class="d-flex flex-column">
+<h3>{{ evenement.nom }}</h3>
+<p>{{ evenement.description | replace({ "<div>": "", "</div>": "" }) | raw }}</p>
+{{ evenement.date|date("F j, Y H:i", "Europe/Paris") }}
+<img src="{{ vich_uploader_asset(evenement) }}" width="300" alt="Image de l'évènement {{ evenement.nom }}">
+</div>
+{% endfor %} 
+{% endblock %}

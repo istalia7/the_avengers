@@ -27,8 +27,8 @@ class EvenementsCrudController extends AbstractCrudController
             TextEditorField::new('description'),
             DateTimeField::new('date', 'Date et Heure'),
             ImageField::new('imageName', 'Image')
-                ->setBasePath('build/images/evenements')
-                ->setUploadDir('public/build/images/evenements')
+                ->setBasePath('images/evenements')
+                ->setUploadDir('public/images/evenements')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M')),

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %} 
+{% block body %} 
+{% for seminaire in seminaires %}
+<div>
+    <h3>{{ seminaire.titre }}</h3>
+    <p>{{ seminaire.descriptionStructure | replace ({'<div>': '', '</div>': ''}) | raw }}</p>
+    <img src="{{ vich_uploader_asset(seminaire, 'imageStructureFile') }}" alt="">
+    <p>{{ seminaire.descriptionEquipement | replace ({'<div>': '', '</div>': ''}) | raw }}</p>
+    <img src="{{ vich_uploader_asset(seminaire, 'imageEquipementFile') }}" alt="">
+    {# {% for entreprise in seminaire.entreprises %}
+        {{ entreprise.nom }}
+    {% endfor %} #}
+</div>   
+{% endfor %}
+{% endblock %}

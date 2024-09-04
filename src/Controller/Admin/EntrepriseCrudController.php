@@ -28,8 +28,8 @@ class EntrepriseCrudController extends AbstractCrudController
             TextField::new('nom'),
             IntegerField::new('nbrPers'),
             ImageField::new('imageName', 'Image')
-                ->setBasePath('build/images/seminaires')
-                ->setUploadDir('public/build/images/seminaires')
+                ->setBasePath('images/entreprise')
+                ->setUploadDir('public/images/entreprise')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M')),

@@ -32,8 +32,8 @@ class EscapeGameCrudController extends AbstractCrudController
             NumberField::new('duree'),
             NumberField::new('prix')->setDecimalSeparator(','),
             ImageField::new('imageName', 'Image')
-                ->setBasePath('build/images/escape_game')
-                ->setUploadDir('public/build/images/escape_game')
+                ->setBasePath('images/escape_game')
+                ->setUploadDir('public/images/escape_game')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M'))

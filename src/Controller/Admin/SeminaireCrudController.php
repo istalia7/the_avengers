@@ -28,15 +28,15 @@ class SeminaireCrudController extends AbstractCrudController
             TextField::new('titre'),
             TextEditorField::new('descriptionStructure'),
             ImageField::new('imageStructure', 'Image Structure')
-                ->setBasePath('build/images/seminaires')
-                ->setUploadDir('public/build/images/seminaires')
+                ->setBasePath('images/seminaires')
+                ->setUploadDir('public/images/seminaires')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M')),
             TextEditorField::new('descriptionEquipement'),
             ImageField::new('imageEquipement', 'Image Equipement')
-                ->setBasePath('build/images/seminaires')
-                ->setUploadDir('public/build/images/seminaires')
+                ->setBasePath('images/seminaires')
+                ->setUploadDir('public/images/seminaires')
                 ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false)
                 ->setFileConstraints(new Image(maxSize: '1M')),

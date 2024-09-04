@@ -40,7 +40,7 @@ class Seminaire
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $structureUpdatedAt = null;
 
-    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageEquipement', size: 'imageSizeNum2')]
+    #[Vich\UploadableField(mapping: 'seminaires', fileNameProperty: 'imageEquipement', size: 'imageEquipementSize')]
     private ?File $imageEquipementFile = null;
 
     #[ORM\Column(nullable: true)]

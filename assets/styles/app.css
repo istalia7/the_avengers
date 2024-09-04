@@ -8,11 +8,9 @@ body {
 #background-form {
   box-sizing: border-box;
 
-  position: absolute;
+  display: flex;
   width: 473px;
   height: 648px;
-  left: 921px;
-  top: 222px;
 
   background: url(../images/JenniferWalters.png);
   background-repeat: no-repeat;

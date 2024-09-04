@@ -44,4 +44,11 @@ app.flashes('success') %}
   <button type="submit">Envoyer ?</button>
   {{ form_end(entrepriseForm) }}
 </div>
-{% endblock %}
+{% for infosContact in infosContacts %}
+<ul>
+  <li class="list-group">{{ infosContact.adresse }}</li>
+  <li class="list-group">{{ infosContact.telephone }}</li>
+  <li class="list-group">{{ infosContact.adresseMail }}</li>
+</ul>
+
+{% endfor %} {% endblock %}
