@@ -26,7 +26,14 @@
     {% block stylesheets %} {% endblock %} {% block javascripts %} {% block
     importmap %}{{
       importmap("app")
-    }}{% endblock %} {% endblock %}
+    }}
+    {{
+      encore_entry_link_tags("app")
+    }}
+    {{
+      encore_entry_script_tags("app")
+    }}
+    {% endblock %} {% endblock %}
   </head>
   <body>
     {% block body %} {% endblock %}

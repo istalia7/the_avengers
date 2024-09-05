@@ -17,4 +17,13 @@ class SeminaireController extends AbstractController
             'seminaires' => $seminaires,
         ]);
     }
+
+    #[Route('/seminaire/{id}', name: 'app_seminaire_details')]
+    public function details(int $id, SeminaireRepository $seminaireRepository): Response
+    {
+        $seminaire = $seminaireRepository->find($id);
+        return $this->render('seminaire/seminaire.html.twig', [
+            'seminaire' => $seminaire,
+        ]);
+    }
 }
