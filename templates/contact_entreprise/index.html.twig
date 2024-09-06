@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %} {% block body %} {% for message in
+app.flashes('success') %}
+<div>
+  {{ message }}
+</div>
+{% endfor %}
+<div>
+  {{ form_start(entrepriseForm) }}
+  {# Nom Field #}
+  <div>
+    {{ form_label(entrepriseForm.nom) }}
+    {{ form_widget(entrepriseForm.nom) }}
+  </div>
+  {# Prenom field #}
+  <div>
+    {{ form_label(entrepriseForm.prenom) }}
+    {{ form_widget(entrepriseForm.prenom) }}
+  </div>
+  {# Email field #}
+  <div>
+    {{ form_label(entrepriseForm.email) }}
+    {{ form_widget(entrepriseForm.email) }}
+  </div>
+  {# Telephone field #}
+  <div>
+    {{ form_label(entrepriseForm.numTel) }}
+    {{ form_widget(entrepriseForm.numTel) }}
+  </div>
+  {# Entreprise field #}
+  <div>
+    {{ form_label(entrepriseForm.nomEntreprise) }}
+    {{ form_widget(entrepriseForm.nomEntreprise) }}
+  </div>
+  {# Motif field #}
+  <div>
+    {{ form_label(entrepriseForm.raison) }}
+    {{ form_widget(entrepriseForm.raison) }}
+  </div>
+  {# Message field #}
+  <div>
+    <p>{{ form_label(entrepriseForm.message) }}</p>
+    {{ form_widget(entrepriseForm.message) }}
+  </div>
+  <button type="submit">Envoyer ?</button>
+  {{ form_end(entrepriseForm) }}
+</div>
+{% endblock %}
