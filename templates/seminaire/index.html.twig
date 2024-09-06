@@ -16,13 +16,12 @@
 			<div class="flex justify-evenly pt-8">
 				<a href="{{ path('app_seminaire_details', { id: seminaire.id }) }}" class="Btn text-center -mr-14">
 					{% include "partials/button.html.twig" %}
-					<p class="mx-4">Voir les entreprises participantes</p>
+					<p class="text">Voir les entreprises participantes</p>
 				</a>
 				<a href="{{ path('app_contact_entreprise') }}" class="Btn text-center -ml-14">
 					{% include "partials/button.html.twig" %}
-					J'inscris mon
-					<br>
-					entreprise</a>
+					<p class="text">J'inscris mon entreprise</p>
+					</a>
 			</div>
 		</div>
 	{% endfor %}
