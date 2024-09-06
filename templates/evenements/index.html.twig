@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}Évenements
+{% endblock %}
+{% block body %}
+	{% for evenement in evenements %}
+		<div class="d-flex flex-column mb-12">
+			<h3 class="text-2xl font-medium text-center">{{ evenement.nom }}</h3>
+			<div class="bg-[#D1D1D126] p-4 rounded-xl w-9/12 mx-auto mt-4 max-h-80">
+				<div class="flex flex-row-reverse items-center justify-evenly gap-8">
+					<p>{{ evenement.description | replace({ "<div>": "", "</div>": "" }) | raw }}</p>
+					<img class="rounded-full" src="{{ vich_uploader_asset(evenement) }}" width="300" alt="Image de l'évènement {{ evenement.nom }}">
+				</div>
+				<div class="text-center">
+					<p>L'évènement aura lieu le
+						{{ evenement.date|date("j F, Y", "Europe/Paris") }}
+						à
+						{{ evenement.date|date("H:i", "Europe/Paris") }}
+					</p>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}

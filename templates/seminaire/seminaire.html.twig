@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Entreprises participantes
+{%
+endblock %}
+{% block body %}
+	{% for entreprise in seminaire.entreprises %}
+		{{ entreprise.nom }}
+		<p>Nombre de personnes participantes :
+			{{ entreprise.nbrPers }}</p>
+		<img src="{{ vich_uploader_asset(entreprise) }}" alt="Logo de l'entreprise {{ entreprise.nom }}"/>
+	{% endfor %}
+{% endblock %}

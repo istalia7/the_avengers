@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Séminaires
+{% endblock %}
+{% block body %}
+	{% for seminaire in seminaires %}
+		<div class="flex flex-col mt-28">
+			<h3 class="text-2xl font-medium text-center">{{ seminaire.titre }}</h3>
+			<div class="flex justify-evenly flex-row-reverse pt-8">
+				<p class="self-center mx-20 text-center">{{ seminaire.descriptionStructure | replace ({'<div>': '', '</div>': ''}) | raw }}</p>
+				<img class="rounded-xl w-96 ml-16" src="{{ vich_uploader_asset(seminaire, 'imageStructureFile') }}" alt="">
+			</div>
+			<div class="flex justify-evenly pt-8">
+				<p class="self-center mx-20 text-center">{{ seminaire.descriptionEquipement | replace ({'<div>': '', '</div>': ''}) | raw }}</p>
+				<img class="rounded-xl w-96 mr-16" src="{{ vich_uploader_asset(seminaire, 'imageEquipementFile') }}" alt="">
+			</div>
+			<div class="flex justify-evenly pt-8">
+				<a href="{{ path('app_seminaire_details', { id: seminaire.id }) }}" class="Btn text-center -mr-14">
+					{% include "partials/button.html.twig" %}
+					<p class="mx-4">Voir les entreprises participantes</p>
+				</a>
+				<a href="{{ path('app_contact_entreprise') }}" class="Btn text-center -ml-14">
+					{% include "partials/button.html.twig" %}
+					J'inscris mon
+					<br>
+					entreprise</a>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
