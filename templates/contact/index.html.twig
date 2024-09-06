@@ -1,56 +1,159 @@
-{% extends 'base.html.twig' %}
-{% block title %}Contactez-nous
-{% endblock %}
-{% block body %}
-	{% for message in app.flashes('success') %}
-		<div>
-			{{ message }}
-		</div>
-	{% endfor %}
-	<div id="background-form">
-		{{ form_start(contactForm) }}
-		{# Nom Field #}
-		<div id="form-box">
-			{{ form_label(contactForm.nom) }}
-			{{ form_widget(contactForm.nom) }}
+{% extends 'base.html.twig' %} {% block title %}Contactez-nous {% endblock %} {%
+block body %}
 
-			{# Prenom field #}
+<h2 class="strokeTexte text-center font-semibold text-5xl text-[#D1D1D1]">
+  Formulaire de contact
+</h2>
+{# font-weight: 600; font-size: 40.7px; line-height: 49px; color: #D1D1D1;
+border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
+<div class="bg-green-500">
+  {{ message }}
+</div>
+{% endfor %}
+<div class="pt-12 flex flex-row-reverse justify-evenly items-center flex-wrap">
+  <div id="background-form">
+    {{ form_start(contactForm) }}
+    {# Nom Field #}
+    <div id="form-box">
+      {{
+        form_label(contactForm.nom, null, {
+          label_attr: {
+            class: "ml-4 mt-4"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.nom, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
 
-			{{ form_label(contactForm.prenom) }}
-			{{ form_widget(contactForm.prenom) }}
+      {# Prenom field #}
 
-			{# Email field #}
+      {{
+        form_label(contactForm.prenom, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.prenom, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
 
-			{{ form_label(contactForm.email) }}
-			{{ form_widget(contactForm.email) }}
+      {# Email field #}
 
-			{# Telephone field #}
+      {{
+        form_label(contactForm.email, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.email, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
 
-			{{ form_label(contactForm.numTel) }}
-			{{ form_widget(contactForm.numTel) }}
+      {# Telephone field #}
 
-			{# Raison field #}
+      {{
+        form_label(contactForm.numTel, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.numTel, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
 
-			{{ form_label(contactForm.raison) }}
-			{{ form_widget(contactForm.raison, { attr: { class: "dropdown" } }) }}
+      {# Raison field #}
 
-			{# Message field #}
+      {{
+        form_label(contactForm.raison, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.raison, {
+          attr: {
+            class: "dropdown ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
 
-			{{ form_label(contactForm.message) }}
-			{{ form_widget(contactForm.message) }}
-			<button class="Btn" type="submit">
-				{% include "partials/button.html.twig" %}
-				<p class="text">Envoyer ?</p>
-			</button>
-		</div>
-		{{ form_end(contactForm) }}
-	</div>
-	{% for infosContact in infosContacts %}
-		<ul>
-			<li class="list-group">{{ infosContact.adresse }}</li>
-			<li class="list-group">{{ infosContact.telephone }}</li>
-			<li class="list-group">{{ infosContact.adresseMail }}</li>
-		</ul>
+      {# Message field #}
 
-	{% endfor %}
+      {{
+        form_label(contactForm.message, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(contactForm.message, {
+          attr: {
+            class:
+              "rounded-lg text-[#040606] w-11/12 ml-4 pl-2 max-h-36 min-h-16"
+          }
+        })
+      }}
+      <button class="Btn m-auto" type="submit">
+        {% include "partials/button.html.twig" %}
+        <p class="text">Envoyer ?</p>
+      </button>
+    </div>
+    {{ form_end(contactForm) }}
+  </div>
+  {% for infosContact in infosContacts %}
+  <div class="bgContact">
+    <div class="contactRect">
+      <ul class="flex flex-col h-[310px] justify-evenly">
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img
+              src="{{ asset('images/addressLogo.png') }}"
+              alt="Logo adresse"
+            />
+          </span>
+          {{ infosContact.adresse }}
+        </li>
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img
+              src="{{ asset('images/phoneLogo.png') }}"
+              alt="Logo téléphone"
+            />
+          </span>
+          {{ infosContact.telephone }}
+        </li>
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img src="{{ asset('images/mailLogo.png') }}" alt="Logo email" />
+          </span>
+          {{ infosContact.adresseMail }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
 {% endblock %}

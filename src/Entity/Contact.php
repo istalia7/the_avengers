@@ -22,6 +22,7 @@ class Contact
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email()]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]

@@ -120,3 +120,26 @@ body {
   fill: #fff;
 }
 /* end of captain america */
+
+.strokeTexte {
+  text-shadow: -3px 0 #f7060d, 0 3px #f7060d, 3px 0 #f7060d, 0 -3px #f7060d,
+    -3px -3px #f7060d, 3px -3px #f7060d, -3px 3px #f7060d, 3px 3px #f7060d;
+}
+
+.bgContact {
+  background-image: url("../images/contact_bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 650px;
+  height: 310px;
+}
+
+.contactRect {
+  background: rgba(0, 0, 0, 0.5);
+  width: 650px;
+  height: 310px;
+}
+
+/* .justify-center {
+  justify-content: center;
+} */
