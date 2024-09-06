@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Escape Game
+{% endblock %}
+{% block body %}
+	<h1>salut</h1>
+	{% for escapeGame in escapeGames %}
+		<div>
+			<h3>{{ escapeGame.nom }}</h3>
+			<p>{{ escapeGame.description | replace({"<div>": "", "</div>": ""}) | raw }}</p>
+			{# {{ escapeGame.date }} #}
+			<div>
+				<ul>
+					<li>{{ escapeGame.nbrPlaces }}</li>
+					<li>{{ escapeGame.formattedDuration }}</li>
+					<li>{{ escapeGame.prix | replace({".": ","}) }}€</li>
+				</ul>
+			</div>
+			<img src="{{ vich_uploader_asset(escapeGame) }}" alt="Image de l'escape game {{ escapeGame.nom }}"/>
+		</div>
+	{% endfor %}
+{% endblock %}
