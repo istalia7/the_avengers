@@ -1,44 +1,47 @@
-<header class="header">
-  <div class="logo">
+<header class="flex justify-between">
+  <div class="logo py-2 px-2">
     <img
       src="{{ asset('images/logo.png') }}"
       alt="Logo Avengers"
       class="logo-img"
     />
   </div>
-  <span class="headerh1"><h1>The Avengers</h1></span>
-  <span class="headerh2"> <h2>Super-héros de vos loisirs</h2> </span>
-
-  <nav class="nav">
-    <ul>
-      <li>
+  <div class="flex flex-col justify-around content-start">
+    <h1 class="text-5xl strokeTexte">The Avengers</h1>
+    <h2 class="text-3xl strokeTexte pl-40">Super-héros de vos loisirs</h2>
+  </div>
+  <nav class="flex items-center">
+    <ul class="flex flex-wrap pr-2">
+      <li class="pr-4">
         <a href="{{ path('app_home') }}" class="Btn">
           {% include "partials/button.html.twig" %}
-          <p class="text">Accueil</p>
+          <p class="font-semibold">Accueil</p>
         </a>
       </li>
-      <li>
+      <li class="pr-4">
         <a href="{{ path('app_evenements') }}" class="Btn">
           {% include "partials/button.html.twig" %}
-          <p class="text">Nos Evénements</p>
+          <p class="font-semibold w-7/12 text-center">Nos Evénements</p>
         </a>
       </li>
-      <li>
+      {#
+      <li class="pr-4">
         <a href="{{ path('app_escape_game') }}" class="Btn">
           {% include "partials/button.html.twig" %}
-          <p class="text">Escape game</p>
+          <p class="font-semibold">Escape game</p>
         </a>
       </li>
-      <li>
+      <li class="pr-4">
         <a href="{{ path('app_seminaire') }}" class="Btn">
           {% include "partials/button.html.twig" %}
-          <p class="text">Séminaires</p>
+          <p class="font-semibold">Séminaires</p>
         </a>
       </li>
-      <li>
+      #}
+      <li class="pr-4">
         <a href="{{ path('app_contact') }}" class="Btn">
           {% include "partials/button.html.twig" %}
-          <p class="text">Nous contacter</p>
+          <p class="font-semibold w-7/12 text-center">Nous contacter</p>
         </a>
       </li>
     </ul>
