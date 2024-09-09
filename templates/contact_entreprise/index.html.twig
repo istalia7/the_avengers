@@ -1,57 +1,179 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-	{% for message in
+{% extends 'base.html.twig' %} {% block body %} {% for message in
 app.flashes('success') %}
-		<div>
-			{{ message }}
-		</div>
-	{% endfor %}
-	<div>
-		{{ form_start(entrepriseForm) }}
-		{# Nom Field #}
-		<div>
-			{{ form_label(entrepriseForm.nom) }}
-			{{ form_widget(entrepriseForm.nom) }}
-		</div>
-		{# Prenom field #}
-		<div>
-			{{ form_label(entrepriseForm.prenom) }}
-			{{ form_widget(entrepriseForm.prenom) }}
-		</div>
-		{# Email field #}
-		<div>
-			{{ form_label(entrepriseForm.email) }}
-			{{ form_widget(entrepriseForm.email) }}
-		</div>
-		{# Telephone field #}
-		<div>
-			{{ form_label(entrepriseForm.numTel) }}
-			{{ form_widget(entrepriseForm.numTel) }}
-		</div>
-		{# Entreprise field #}
-		<div>
-			{{ form_label(entrepriseForm.nomEntreprise) }}
-			{{ form_widget(entrepriseForm.nomEntreprise) }}
-		</div>
-		{# Motif field #}
-		<div>
-			{{ form_label(entrepriseForm.raison) }}
-			{{ form_widget(entrepriseForm.raison) }}
-		</div>
-		{# Message field #}
-		<div>
-			<p>{{ form_label(entrepriseForm.message) }}</p>
-			{{ form_widget(entrepriseForm.message) }}
-		</div>
-		<button type="submit">Envoyer ?</button>
-		{{ form_end(entrepriseForm) }}
-	</div>
-	{% for infosContact in infosContacts %}
-		<ul>
-			<li class="list-group">{{ infosContact.adresse }}</li>
-			<li class="list-group">{{ infosContact.telephone }}</li>
-			<li class="list-group">{{ infosContact.adresseMail }}</li>
-		</ul>
+<div>
+  {{ message }}
+</div>
+{% endfor %}
+<div
+  class="pt-12 flex flex-row-reverse justify-evenly items-center flex-wrap mb-14"
+>
+  <div id="background-form">
+    {{ form_start(entrepriseForm, { attr: { novalidate: "novalidate" } }) }}
+    {# Nom Field #}
+    <div id="form-box">
+      {{
+        form_label(entrepriseForm.nom, null, {
+          label_attr: {
+            class: "ml-4 mt-4"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.nom, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.nom) %}
+      <span class="ml-4 mt-1"> {{ form_errors(entrepriseForm.nom) }}</span>
+      {% endif %} {# Prenom field #}
+      {{
+        form_label(entrepriseForm.prenom, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.prenom, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.prenom) %}
+      <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.prenom) }}</span>
+      {% endif %} {# Email field #}
+      {{
+        form_label(entrepriseForm.email, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.email, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.email) %}
+      <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.email) }}</span>
+      {% endif %} {# Telephone field #}
 
-	{% endfor %}
+      {{
+        form_label(entrepriseForm.numTel, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.numTel, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.numTel) %}
+      <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.numTel) }}</span>
+      {% endif %}
+      {{
+        form_label(entrepriseForm.nomEntreprise, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.nomEntreprise, {
+          attr: {
+            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.nomEntreprise) %}
+      <span class="ml-4 mt-1">{{
+        form_errors(entrepriseForm.nomEntreprise)
+      }}</span>
+      {% endif %} {# Raison field #}
+      {{
+        form_label(entrepriseForm.raison, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.raison, {
+          attr: {
+            class: "dropdown ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.raison) %}
+      <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.raison) }}</span>
+      {% endif %} {# Message field #}
+      {{
+        form_label(entrepriseForm.message, null, {
+          label_attr: {
+            class: "ml-4 mt-3"
+          }
+        })
+      }}
+      {{
+        form_widget(entrepriseForm.message, {
+          attr: {
+            class:
+              "rounded-lg text-[#040606] w-11/12 ml-4 pl-2 max-h-24 min-h-16"
+          }
+        })
+      }}
+      {% if form_errors(entrepriseForm.message) %}
+      <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.message) }}</span>
+      {% endif %}
+
+      <button class="Btn m-auto" type="submit">
+        {% include "partials/button.html.twig" %}
+        <p class="text">Envoyer ?</p>
+      </button>
+    </div>
+    {{ form_end(entrepriseForm) }}
+  </div>
+
+  {% for infosContact in infosContacts %}
+  <div class="bgContact">
+    <div class="contactRect">
+      <ul class="flex flex-col h-[310px] justify-evenly">
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img
+              src="{{ asset('images/addressLogo.png') }}"
+              alt="Logo adresse"
+            />
+          </span>
+          {{ infosContact.adresse }}
+        </li>
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img
+              src="{{ asset('images/phoneLogo.png') }}"
+              alt="Logo téléphone"
+            />
+          </span>
+          {{ infosContact.telephone }}
+        </li>
+        <li class="flex items-center">
+          <span class="mx-8">
+            <img src="{{ asset('images/mailLogo.png') }}" alt="Logo email" />
+          </span>
+          {{ infosContact.adresseMail }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}
