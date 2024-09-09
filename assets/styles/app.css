@@ -13,12 +13,12 @@ body {
   box-sizing: border-box;
 
   display: flex;
-  width: 473px;
-  height: 648px;
+  width: 500px;
+  height: 725px;
 
   background: url(../images/JenniferWalters.png);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   border: 3px solid #ffffff;
   border-radius: 8px;
 }
@@ -26,10 +26,9 @@ body {
 #form-box {
   display: flex;
   flex-direction: column;
-  width: 473px;
-  height: 648px;
+  width: 500px;
+  height: 725px;
   border-radius: 8px;
-
   background: rgba(217, 217, 217, 0.1);
 }
 
@@ -138,7 +137,6 @@ body {
   background: rgba(0, 0, 0, 0.5);
   width: 650px;
   height: 310px;
-  background-color: black;
   color: white;
   font-family: "Inter", sans-serif;
   font-weight: 200;
@@ -224,4 +222,8 @@ body {
   border: 2px solid #fff;
   animation: spin 5s linear infinite;
   box-sizing: border-box;
+}
+
+.lastSeminaire:last-child {
+  margin-bottom: 6rem;
 }

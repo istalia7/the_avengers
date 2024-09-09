@@ -16,23 +16,29 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Email()]
+    #[Assert\Email(message: "Cette adresse mail est invalide")]
+    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Veuillez sélectionner la raison de votre message")]
     private ?string $raison = null;
 
     #[ORM\Column]
-    #[Assert\Regex('#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#')]
+    #[Assert\Regex('#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#', message: "Ce numéro de téléphone est invalide")]
+    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $numTel = null;
 
     #[ORM\Column(length: 800)]
+    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

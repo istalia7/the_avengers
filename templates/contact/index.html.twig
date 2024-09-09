@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %} {% block title %}Contactez-nous {% endblock %} {%
 block body %}
 
-<h2 class="strokeTexte text-center font-semibold text-5xl text-[#D1D1D1]">
+<h2 class="strokeTexte text-center font-semibold text-5xl text-[#D1D1D1] mt-2">
   Formulaire de contact
 </h2>
 {# font-weight: 600; font-size: 40.7px; line-height: 49px; color: #D1D1D1;
@@ -10,9 +10,11 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
   {{ message }}
 </div>
 {% endfor %}
-<div class="pt-12 flex flex-row-reverse justify-evenly items-center flex-wrap">
+<div
+  class="pt-12 flex flex-row-reverse justify-evenly items-center flex-wrap mb-14"
+>
   <div id="background-form">
-    {{ form_start(contactForm) }}
+    {{ form_start(contactForm, { attr: { novalidate: "novalidate" } }) }}
     {# Nom Field #}
     <div id="form-box">
       {{
@@ -29,9 +31,9 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
           }
         })
       }}
-
-      {# Prenom field #}
-
+      {% if form_errors(contactForm.nom) %}
+      <span class="ml-4 mt-1"> {{ form_errors(contactForm.nom) }}</span>
+      {% endif %} {# Prenom field #}
       {{
         form_label(contactForm.prenom, null, {
           label_attr: {
@@ -46,9 +48,9 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
           }
         })
       }}
-
-      {# Email field #}
-
+      {% if form_errors(contactForm.prenom) %}
+      <span class="ml-4 mt-1">{{ form_errors(contactForm.prenom) }}</span>
+      {% endif %} {# Email field #}
       {{
         form_label(contactForm.email, null, {
           label_attr: {
@@ -63,8 +65,9 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
           }
         })
       }}
-
-      {# Telephone field #}
+      {% if form_errors(contactForm.email) %}
+      <span class="ml-4 mt-1">{{ form_errors(contactForm.email) }}</span>
+      {% endif %} {# Telephone field #}
 
       {{
         form_label(contactForm.numTel, null, {
@@ -80,9 +83,9 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
           }
         })
       }}
-
-      {# Raison field #}
-
+      {% if form_errors(contactForm.numTel) %}
+      <span class="ml-4 mt-1">{{ form_errors(contactForm.numTel) }}</span>
+      {% endif %} {# Raison field #}
       {{
         form_label(contactForm.raison, null, {
           label_attr: {
@@ -97,9 +100,9 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
           }
         })
       }}
-
-      {# Message field #}
-
+      {% if form_errors(contactForm.raison) %}
+      <span class="ml-4 mt-1">{{ form_errors(contactForm.raison) }}</span>
+      {% endif %} {# Message field #}
       {{
         form_label(contactForm.message, null, {
           label_attr: {
@@ -111,10 +114,14 @@ border: 5px solid #F7060D; #} {% for message in app.flashes('success') %}
         form_widget(contactForm.message, {
           attr: {
             class:
-              "rounded-lg text-[#040606] w-11/12 ml-4 pl-2 max-h-36 min-h-16"
+              "rounded-lg text-[#040606] w-11/12 ml-4 pl-2 max-h-24 min-h-16"
           }
         })
       }}
+      {% if form_errors(contactForm.message) %}
+      <span class="ml-4 mt-1">{{ form_errors(contactForm.message) }}</span>
+      {% endif %}
+
       <button class="Btn m-auto" type="submit">
         {% include "partials/button.html.twig" %}
         <p class="text">Envoyer ?</p>
