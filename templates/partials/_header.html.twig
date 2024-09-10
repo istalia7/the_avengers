@@ -1,14 +1,16 @@
 <header class="flex justify-between">
-  <div class="logo py-2 px-2">
-    <img
-      src="{{ asset('images/logo.png') }}"
-      alt="Logo Avengers"
-      class="logo-img"
-    />
+  <div class="py-2 px-2">
+    <a href="{{ path('app_home') }}" class="logo">
+      <img
+        src="{{ asset('images/logo.png') }}"
+        alt="Logo Avengers"
+        class="logo-img"
+      />
+    </a>
   </div>
-  <div class="flex flex-col justify-around content-start">
-    <h1 class="text-5xl strokeTexte">The Avengers</h1>
-    <h2 class="text-3xl strokeTexte pl-40">Super-héros de vos loisirs</h2>
+  <div class="flex flex-col justify-around content-start flex-grow pl-4">
+    <h1 class="text-5xl headerText">The Avengers</h1>
+    <h2 class="text-3xl headerText pl-40">Super-héros de vos loisirs</h2>
   </div>
   <nav class="flex items-center">
     <ul class="flex flex-wrap pr-2">
@@ -19,25 +21,39 @@
         </a>
       </li>
       <li class="pr-4">
-        <a href="{{ path('app_evenements') }}" class="Btn">
-          {% include "partials/button.html.twig" %}
-          <p class="font-semibold w-7/12 text-center">Nos Evénements</p>
-        </a>
+        <p class="font-semibold w-7/12 text-center Btn dropdownButton">
+          Évènements {% include "partials/button.html.twig" %}
+        </p>
+        <div
+          class="dropdownMenu flex-col items-center absolute w-40 bg-[#005f99] border-[#e82728] border-2 rounded-md py-2 hidden"
+        >
+          <ul
+            class="flex flex-col items-center h-28 justify-around divide-y-2 divide-blue-500"
+          >
+            <li>
+              <a
+                class="hover:bg-white hover:text-[#005f99] hover:font-medium"
+                href="{{ path('app_evenements') }}"
+                >Nos soirées</a
+              >
+            </li>
+            <li class="pt-2">
+              <a
+                class="hover:bg-white hover:text-[#005f99] hover:font-medium"
+                href="{{ path('app_escape_game') }}"
+                >Escape Game</a
+              >
+            </li>
+            <li class="pt-1">
+              <a
+                class="hover:bg-white hover:text-[#005f99] hover:font-medium"
+                href="{{ path('app_seminaire') }}"
+                >Séminaires</a
+              >
+            </li>
+          </ul>
+        </div>
       </li>
-      {#
-      <li class="pr-4">
-        <a href="{{ path('app_escape_game') }}" class="Btn">
-          {% include "partials/button.html.twig" %}
-          <p class="font-semibold">Escape game</p>
-        </a>
-      </li>
-      <li class="pr-4">
-        <a href="{{ path('app_seminaire') }}" class="Btn">
-          {% include "partials/button.html.twig" %}
-          <p class="font-semibold">Séminaires</p>
-        </a>
-      </li>
-      #}
       <li class="pr-4">
         <a href="{{ path('app_contact') }}" class="Btn">
           {% include "partials/button.html.twig" %}

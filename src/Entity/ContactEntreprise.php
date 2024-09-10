@@ -5,7 +5,9 @@ namespace App\Entity;
 use App\Repository\ContactEntrepriseRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Mime\Message;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: ContactEntrepriseRepository::class)]
 class ContactEntreprise
@@ -22,16 +24,18 @@ class ContactEntreprise
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Email(message: "Cet adresse mail est invalide")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Regex('#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#')]
+    #[Assert\Regex('#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#', message: "Ce numéro est invalide")]
     private ?string $numTel = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nomEntreprise = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Veuillez sélectionner la raison de votre message")]
     private ?string $raison = null;
 
     #[ORM\Column(length: 800)]
@@ -139,5 +143,13 @@ class ContactEntreprise
         $this->dateEnvoi = $dateEnvoi;
 
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function validateFields(ExecutionContextInterface $context): void
+    {
+        if (empty($this->nom) || empty($this->prenom) || empty($this->nomEntreprise) || empty($this->numTel) || empty($this->email) || empty($this->message) || empty($this->raison)) {
+            $context->buildViolation('Veuillez remplir tous les champs')->atPath(ContactEntreprise::class)->addViolation();
+        }
     }
 }

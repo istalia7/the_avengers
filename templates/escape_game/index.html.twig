@@ -2,20 +2,25 @@
 {% block title %}Escape Game
 {% endblock %}
 {% block body %}
-	<h1>salut</h1>
+		<div class="mx-auto container">
 	{% for escapeGame in escapeGames %}
-		<div>
-			<h3>{{ escapeGame.nom }}</h3>
-			<p>{{ escapeGame.description | replace({"<div>": "", "</div>": ""}) | raw }}</p>
-			{# {{ escapeGame.date }} #}
+	<div class="flex flex-col flex-wrap content-around text-center items-center w-4/12">
+			<h3 class="text-2xl font-medium">{{ escapeGame.nom }}</h3>
+			<div class="flex flex-col items-center bg-[#D1D1D126] rounded-lg p-2 mb-4 mt-2">
+			<div class="py-2">
+			<img src="{{ vich_uploader_asset(escapeGame) }}" alt="Image de l'escape game {{ escapeGame.nom }}"/>
+			</div>
 			<div>
+				<p class="py-3">{{ escapeGame.description | replace({"<div>": "", "</div>": ""}) | raw }}</p>
+			Session prévue pour le {{ escapeGame.date|date("j F, Y", "Europe/Paris") }} à {{ escapeGame.date|date("H:i", "Europe/Paris") }}
 				<ul>
-					<li>{{ escapeGame.nbrPlaces }}</li>
-					<li>{{ escapeGame.formattedDuration }}</li>
-					<li>{{ escapeGame.prix | replace({".": ","}) }}€</li>
+					<li class="py-2">Nombre maximum de personnes : {{ escapeGame.nbrPlaces }}</li>
+					<li class="pb-2">Durée de la session : {{ escapeGame.formattedDuration }}</li>
+					<li class="pb-2">Prix d'une place : {{ escapeGame.prix | replace({".": ","}) }}€</li>
 				</ul>
 			</div>
-			<img src="{{ vich_uploader_asset(escapeGame) }}" alt="Image de l'escape game {{ escapeGame.nom }}"/>
 		</div>
+	</div>	
 	{% endfor %}
+	</div>
 {% endblock %}

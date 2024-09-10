@@ -6,6 +6,7 @@ use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -16,16 +17,13 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Email(message: "Cette adresse mail est invalide")]
-    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -34,11 +32,9 @@ class Contact
 
     #[ORM\Column]
     #[Assert\Regex('#^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$#', message: "Ce numéro de téléphone est invalide")]
-    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $numTel = null;
 
     #[ORM\Column(length: 800)]
-    #[Assert\NotBlank(message: "Ce champ ne peut pas être vide")]
     private ?string $message = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
@@ -131,5 +127,13 @@ class Contact
         $this->dateEnvoi = $dateEnvoi;
 
         return $this;
+    }
+
+    #[Assert\Callback]
+    public function validateFields(ExecutionContextInterface $context): void
+    {
+        if (empty($this->nom) || empty($this->prenom) || empty($this->numTel) || empty($this->email) || empty($this->message) || empty($this->raison)) {
+            $context->buildViolation('Veuillez remplir tous les champs')->atPath(ContactEntreprise::class)->addViolation();
+        }
     }
 }

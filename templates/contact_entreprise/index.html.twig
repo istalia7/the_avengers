@@ -1,6 +1,9 @@
-{% extends 'base.html.twig' %} {% block body %} {% for message in
-app.flashes('success') %}
-<div>
+{% extends 'base.html.twig' %} {% block body %}
+<h2 class="strokeTexte text-center font-semibold text-5xl text-[#D1D1D1] mt-2">
+  Formulaire de contact spécial entreprise
+</h2>
+{% for message in app.flashes('success') %}
+<div class="bg-green-500">
   {{ message }}
 </div>
 {% endfor %}
@@ -21,7 +24,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.nom, {
           attr: {
-            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -38,7 +41,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.prenom, {
           attr: {
-            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -55,7 +58,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.email, {
           attr: {
-            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -73,7 +76,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.numTel, {
           attr: {
-            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -90,7 +93,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.nomEntreprise, {
           attr: {
-            class: "ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -109,7 +112,7 @@ app.flashes('success') %}
       {{
         form_widget(entrepriseForm.raison, {
           attr: {
-            class: "dropdown ml-4 w-50 h-8 rounded-lg pl-2 text-[#040606]"
+            class: "dropdown ml-4 w-52 h-8 rounded-lg pl-2 text-[#040606]"
           }
         })
       }}
@@ -133,6 +136,8 @@ app.flashes('success') %}
       }}
       {% if form_errors(entrepriseForm.message) %}
       <span class="ml-4 mt-1">{{ form_errors(entrepriseForm.message) }}</span>
+      {% endif %} {% if form_errors(entrepriseForm) %}
+      <div class="ml-4 mt-2">{{ form_errors(entrepriseForm) }}</div>
       {% endif %}
 
       <button class="Btn m-auto" type="submit">

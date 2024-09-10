@@ -17,11 +17,21 @@ class ContactEntrepriseFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('numTel', TelType::class)
-            ->add('nomEntreprise', TextType::class)
+            ->add('nom', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Stark'
+                ]
+            ])
+            ->add('prenom', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Tony'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'placeholder' => 'tonystark@gmail.com'
+                ]
+            ])
             ->add('raison', ChoiceType::class, [
                 'label' => 'Raison :',
                 'placeholder' => 'Sélectionnez un motif',
@@ -29,12 +39,26 @@ class ContactEntrepriseFormType extends AbstractType
                 'choices' => [
                     'Raison' => [
                         'Renseignement' => 'renseignement',
-                        'Réservation' => 'réservation',
+                        'Réclamation' => 'réclamation',
                         'Aide' => 'aide',
                     ]
                 ]
             ])
-            ->add('message', TextareaType::class);
+            ->add('numTel', TelType::class, [
+                'attr' => [
+                    'placeholder' => '06.10.11.12.13'
+                ]
+            ])
+            ->add('nomEntreprise', TextType::class, [
+                'attr' => [
+                    'placeholder' => 'Stark industries'
+                ]
+            ])
+            ->add('message', TextareaType::class, [
+                'attr' => [
+                    'placeholder' => 'I am Iron Man'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

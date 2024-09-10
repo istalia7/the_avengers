@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %} {% block title %}Connexion {% endblock %} {%
-block body %}
+block body %} {% for message in app.flashes('success') %}
+<div class="bg-green-500">{{ message }}</div>
+{% endfor %}
 <form method="post">
   {% if error %}
   <div class="alert alert-danger">
@@ -20,7 +22,7 @@ block body %}
     value="{{ last_username }}"
     name="_username"
     id="username"
-    class="form-control"
+    class="text-black"
     autocomplete="email"
     required
     autofocus
@@ -30,7 +32,7 @@ block body %}
     type="password"
     name="_password"
     id="password"
-    class="form-control"
+    class="text-black"
     autocomplete="current-password"
     required
   />

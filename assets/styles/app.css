@@ -176,45 +176,28 @@ header {
   line-height: 1.5;
 }
 
-.coming-soon {
-  position: absolute;
-  right: -70px;
-  top: -30px;
-}
-
-.circle {
-  width: 150px;
-  height: 150px;
-  background-color: #444;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.circle p {
-  margin: 0;
-  line-height: 1.2;
-  position: relative;
-}
-
-.circle p:before {
-  content: "";
-  position: absolute;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  animation: spin 5s linear infinite;
-  box-sizing: border-box;
-}
-
 .lastSeminaire:last-child {
   margin-bottom: 6rem;
+}
+
+.dropdownShow {
+  display: flex;
+  box-shadow: 6px 6px 0px rgb(12, 12, 12);
+  animation-name: dropdownAnimation;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  margin-left: 0.75rem;
+}
+
+@keyframes dropdownAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+
+.headerText {
+  text-shadow: -2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;
 }
